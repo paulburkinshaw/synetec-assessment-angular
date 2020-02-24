@@ -23,6 +23,10 @@
                         </tr>
                     </tbody>
                 </table>
+
+                <div *ngIf="cities == undefined || cities.length < 1">
+                    No cities to display
+                </div>
             </div>
         </div>
     </div>
