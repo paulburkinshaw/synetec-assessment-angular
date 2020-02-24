@@ -1,13 +1,20 @@
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { CitiesListComponent } from './components/cities/cities-list.component';
+import { CitiesService } from './services/cities/cities.service';
+
 describe('AppComponent', () => {
+  const mockCitiesServiceService = jasmine.createSpyObj('CitiesService', ['getCities']);
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
         AppComponent,
         CitiesListComponent
       ],
+      providers: [
+        { provide: CitiesService, useValue: mockCitiesServiceService }
+      ]
     }).compileComponents();
   }));
 
@@ -22,7 +29,7 @@ describe('AppComponent', () => {
     const app = fixture.debugElement.componentInstance;
     expect(app.title).toEqual('Synetec');
   }));
-  
+
   it('should render title in a h1 tag', async(() => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();

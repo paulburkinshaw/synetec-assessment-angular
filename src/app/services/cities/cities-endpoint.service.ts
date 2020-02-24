@@ -10,4 +10,14 @@ export class CitiesEndpoint extends BaseService {
     constructor(private _httpClient: HttpClient, private _injector: Injector) {
         super(_httpClient, _injector);
     }
+
+    getCities(): Observable<any> {
+
+        const baseUrl = this.getBaseUrl();
+        
+        return this._httpClient
+            .get(`${baseUrl}/api/cities`);
+           
+    }
+
 }
