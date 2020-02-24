@@ -19,9 +19,12 @@ export class CitiesListComponent implements OnInit {
     }
 
     public async getCities() {
-
         this.cities = await this.citiesService.getCities();
+    }
 
+    public async deleteCity(id) {
+        await this.citiesService.deleteCity(id);
+        await this.getCities();
     }
 
 }

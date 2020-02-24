@@ -10,9 +10,11 @@ export class CitiesService {
     }
 
     async getCities(): Promise<ICity[]> {
-
         return await this._citiesEndpoint.getCities().toPromise();
+    }
 
+    async deleteCity(id): Promise<any> {
+        return await this._citiesEndpoint.deleteCity(id).toPromise();
     }
 
 

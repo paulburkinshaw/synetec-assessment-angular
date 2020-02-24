@@ -18,7 +18,7 @@ describe('CitiesService', () => {
     { "id": 3, "name": "Paris", "description": "The one with that big tower." }
   ]
 
-  const mockCitiesEndpoint = jasmine.createSpyObj('_citiesEndpoint', ['getCities']);
+  const mockCitiesEndpoint = jasmine.createSpyObj('_citiesEndpoint', ['getCities', 'deleteCity']);
   mockCitiesEndpoint.getCities.and.returnValue(Observable.of(mockCities));
 
 
@@ -65,9 +65,21 @@ describe('CitiesService', () => {
       
     }));
 
+  });
 
+  describe('deleteCity', () => {
 
+    it('should call CitiesEndpoint.deleteCity with correct id', inject([CitiesService], (service: CitiesService)  => {
+
+      const cityId = 1;
+     
+      service.deleteCity(cityId);
+
+      expect(mockCitiesEndpoint.deleteCity).toHaveBeenCalledWith(cityId);
+      
+    }));
 
   });
+
 
 });

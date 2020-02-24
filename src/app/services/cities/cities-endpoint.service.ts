@@ -20,4 +20,13 @@ export class CitiesEndpoint extends BaseService {
            
     }
 
+    deleteCity(id): Observable<any> {
+
+        const baseUrl = this.getBaseUrl();
+        
+        return this._httpClient
+            .delete(`${baseUrl}/api/cities/delete-city/${id}`);
+           
+    }
+
 }

@@ -85,4 +85,24 @@ describe('CitiesEndpoint', () => {
 
   });
 
+  describe('deleteCity', () => {
+
+    it('should make a DELETE request to /api/cities/delete-city with correct id', () => {
+
+      const cityId = 1;
+
+      const expectedUrl = `${baseUrl}/api/cities/delete-city/${cityId}`;
+
+
+      citiesEndpoint.deleteCity(cityId)
+        .subscribe();
+
+      const req = httpTestingController.expectOne(expectedUrl);
+
+      req.flush({});
+
+    });
+
+  });
+
 });

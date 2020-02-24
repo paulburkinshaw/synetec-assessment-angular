@@ -7,7 +7,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('CitiesListComponent', () => {
 
-  const mockCitiesServiceService = jasmine.createSpyObj('CitiesService', ['getCities']);
+  const mockCitiesServiceService = jasmine.createSpyObj('CitiesService', ['getCities', 'deleteCity']);
   let component: CitiesListComponent;
   let fixture: any;
 
@@ -31,7 +31,7 @@ describe('CitiesListComponent', () => {
       ]
     }).compileComponents();
   }));
-  
+
   it('should create the cities list component', async(() => {
     let component = fixture.createComponent(CitiesListComponent).componentInstance;
     expect(component).toBeTruthy();
@@ -69,11 +69,26 @@ describe('CitiesListComponent', () => {
       component['cities'];
 
       expect(component['cities']).toEqual(mockCities);
-      
+
     }))
 
   });
 
+  describe('deleteCity', () => {
+
+    it('should call CitiesService.deleteCity method with correct id', fakeAsync(() => {
+      let component = fixture.createComponent(CitiesListComponent).componentInstance;
+
+      const cityId = 1;
+
+      component.deleteCity(cityId);
+
+      tick();
+
+      expect(mockCitiesServiceService.deleteCity).toHaveBeenCalledWith(cityId);
+    }))
+
+  });
 
 
 });
